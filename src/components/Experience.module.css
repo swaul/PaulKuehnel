@@ -1,0 +1,151 @@
+.section {
+  padding: 120px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.inner {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.inner.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.inner.visible .item {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.header {
+  margin-bottom: 64px;
+}
+
+.label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text);
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 140px 40px 1fr;
+  gap: 0;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.left {
+  padding-top: 18px;
+  padding-right: 20px;
+  text-align: right;
+}
+
+.period {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  margin-top: 20px;
+  box-shadow: 0 0 0 4px rgba(200,245,66,0.15);
+}
+
+.line {
+  flex: 1;
+  width: 1px;
+  background: var(--border);
+  margin: 6px 0;
+}
+
+.item:last-child .line {
+  display: none;
+}
+
+.card {
+  padding: 16px 0 40px 28px;
+}
+
+.cardHeader {
+  margin-bottom: 10px;
+}
+
+.role {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.company {
+  font-size: 0.85rem;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.desc {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  padding: 4px 12px;
+  border-radius: 100px;
+}
+
+@media (max-width: 700px) {
+  .section { padding: 80px 24px; }
+  .item { grid-template-columns: 0 40px 1fr; }
+  .left { display: none; }
+}

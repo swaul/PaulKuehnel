@@ -1,0 +1,148 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 24px 0;
+  transition: background var(--transition), padding var(--transition), backdrop-filter var(--transition);
+}
+
+.nav.scrolled {
+  padding: 14px 0;
+  background: rgba(8, 8, 8, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+  margin-right: auto;
+  transition: color var(--transition);
+}
+
+.logo:hover {
+  color: var(--accent);
+}
+
+.logoDot {
+  color: var(--accent);
+  font-size: 0.9rem;
+}
+
+.links {
+  display: flex;
+  list-style: none;
+  gap: 36px;
+}
+
+.links a {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  transition: color var(--transition);
+  position: relative;
+}
+
+.links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width var(--transition);
+}
+
+.links a:hover {
+  color: var(--text);
+}
+
+.links a:hover::after {
+  width: 100%;
+}
+
+.cta {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--accent);
+  padding: 9px 20px;
+  border-radius: 100px;
+  transition: all var(--transition);
+}
+
+.cta:hover {
+  background: var(--text);
+  transform: translateY(-1px);
+}
+
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.burger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .cta { display: none; }
+  .burger { display: flex; }
+
+  .links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--bg);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    transform: translateX(100%);
+    transition: transform var(--transition);
+  }
+
+  .links.open {
+    transform: translateX(0);
+  }
+
+  .links a {
+    font-size: 1.5rem;
+    color: var(--text);
+  }
+}

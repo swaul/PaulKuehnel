@@ -1,0 +1,210 @@
+.section {
+  padding: 120px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: start;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.inner.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Image column */
+.imageCol {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.imageWrap {
+  position: relative;
+}
+
+.photo {
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  position: relative;
+  z-index: 1;
+}
+
+.placeholder {
+  width: 100%;
+  aspect-ratio: 4/5;
+  background: var(--bg-3);
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--text-subtle);
+  font-size: 0.8rem;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.imageAccent {
+  position: absolute;
+  inset: 12px -12px -12px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  z-index: 0;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.stat {
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  text-align: center;
+}
+
+.statNum {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.statLabel {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+  letter-spacing: 0.02em;
+}
+
+/* Text column */
+.textCol {
+  padding-top: 8px;
+}
+
+.label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+.bio {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 48px;
+}
+
+.subheading {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  margin-bottom: 24px;
+}
+
+.eduList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.eduItem {
+  display: flex;
+  gap: 20px;
+  padding-bottom: 28px;
+  position: relative;
+}
+
+.eduItem:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 16px;
+  bottom: 0;
+  width: 1px;
+  background: var(--border);
+}
+
+.eduDot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  background: var(--bg);
+  flex-shrink: 0;
+  margin-top: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.eduDegree {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.eduMeta {
+  display: flex;
+  gap: 16px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.eduPeriod {
+  color: var(--accent);
+}
+
+.eduDesc {
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: var(--text-subtle);
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .inner { grid-template-columns: 1fr; gap: 48px; }
+  .imageWrap { max-width: 380px; }
+}
+
+@media (max-width: 600px) {
+  .section { padding: 80px 24px; }
+}
