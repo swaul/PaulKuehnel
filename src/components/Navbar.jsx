@@ -1,18 +1,21 @@
 import { useState, useEffect } from 'react';
 import { config } from '../config.js';
+import { useLang } from '../LangContext.jsx';
 import styles from './Navbar.module.css';
 
-const navLinks = [
-  { label: 'Über mich', href: '#about' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Erfahrung', href: '#experience' },
-  { label: 'Projekte', href: '#projects' },
-  { label: 'Kontakt', href: '#contact' },
-];
-
 export default function Navbar() {
+  const { lang, toggle } = useLang();
+  const t = config[lang];
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const navLinks = [
+    { label: t.nav.about, href: '#about' },
+    { label: t.nav.skills, href: '#skills' },
+    { label: t.nav.experience, href: '#experience' },
+    { label: t.nav.projects, href: '#projects' },
+    { label: t.nav.contact, href: '#contact' },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -36,9 +39,21 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <a href={`mailto:${config.email}`} className={styles.cta}>
-          Kontakt
-        </a>
+        <div className={styles.actions}>
+          <button
+            className={styles.langToggle}
+            onClick={toggle}
+            aria-label="Switch language"
+          >
+            <span className={lang === 'de' ? styles.langActive : styles.langInactive}>DE</span>
+            <span className={styles.langDivider}>/</span>
+            <span className={lang === 'en' ? styles.langActive : styles.langInactive}>EN</span>
+          </button>
+
+          <a href={`mailto:${config.email}`} className={styles.cta}>
+            {t.nav.contact}
+          </a>
+        </div>
 
         <button
           className={styles.burger}

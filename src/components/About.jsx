@@ -1,9 +1,12 @@
 import { config } from '../config.js';
+import { useLang } from '../LangContext.jsx';
 import { useScrollAnimation } from '../hooks.js';
 import styles from './About.module.css';
 import { User } from 'lucide-react';
 
 export default function About() {
+  const { lang } = useLang();
+  const t = config[lang];
   const [ref, visible] = useScrollAnimation();
 
   return (
@@ -25,29 +28,33 @@ export default function About() {
 
           <div className={styles.statsGrid}>
             <div className={styles.stat}>
-              <span className={styles.statNum}>3+</span>
-              <span className={styles.statLabel}>Jahre Erfahrung</span>
+              <span className={styles.statNum}>5+</span>
+              <span className={styles.statLabel}>{t.about.yearsExp}</span>
             </div>
             <div className={styles.stat}>
-              <span className={styles.statNum}>{config.projects.length}</span>
-              <span className={styles.statLabel}>Projekte</span>
+              <span className={styles.statNum}>{t.projects.length}</span>
+              <span className={styles.statLabel}>{t.about.projectsLabel}</span>
             </div>
             <div className={styles.stat}>
-              <span className={styles.statNum}>{config.education.length}</span>
-              <span className={styles.statLabel}>Abschlüsse</span>
+              <span className={styles.statNum}>{t.education.length}</span>
+              <span className={styles.statLabel}>{t.about.degreesLabel}</span>
             </div>
           </div>
         </div>
 
         <div className={styles.textCol}>
-          <span className={styles.label}>✦ Über mich</span>
-          <h2 className={styles.heading}>Wer steckt hinter<br/> den Projekten?</h2>
-          <p className={styles.bio}>{config.bio}</p>
+          <span className={styles.label}>✦ {t.about.sectionLabel}</span>
+          <h2 className={styles.heading}>
+            {t.about.heading.split('\n').map((line, i) => (
+              <span key={i}>{line}{i === 0 && <br/>}</span>
+            ))}
+          </h2>
+          <p className={styles.bio}>{t.bio}</p>
 
           <div className={styles.edu}>
-            <h3 className={styles.subheading}>Ausbildung</h3>
+            <h3 className={styles.subheading}>{t.about.educationHeading}</h3>
             <div className={styles.eduList}>
-              {config.education.map((e, i) => (
+              {t.education.map((e, i) => (
                 <div key={i} className={styles.eduItem}>
                   <div className={styles.eduDot}></div>
                   <div>

@@ -1,20 +1,23 @@
 import { config } from '../config.js';
+import { useLang } from '../LangContext.jsx';
 import { useScrollAnimation } from '../hooks.js';
 import styles from './Experience.module.css';
 
 export default function Experience() {
+  const { lang } = useLang();
+  const t = config[lang];
   const [ref, visible] = useScrollAnimation();
 
   return (
     <section className={styles.section} id="experience" ref={ref}>
       <div className={`${styles.inner} ${visible ? styles.visible : ''}`}>
         <div className={styles.header}>
-          <span className={styles.label}>✦ Werdegang</span>
-          <h2 className={styles.heading}>Berufserfahrung</h2>
+          <span className={styles.label}>✦ {t.expLabels.sectionLabel}</span>
+          <h2 className={styles.heading}>{t.expLabels.heading}</h2>
         </div>
 
         <div className={styles.timeline}>
-          {config.experience.map((job, i) => (
+          {t.experience.map((job, i) => (
             <div key={i} className={styles.item} style={{ transitionDelay: `${i * 0.12}s` }}>
               <div className={styles.left}>
                 <span className={styles.period}>{job.period}</span>

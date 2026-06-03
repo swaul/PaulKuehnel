@@ -1,7 +1,10 @@
 import { config } from '../config.js';
+import { useLang } from '../LangContext.jsx';
 import styles from './Footer.module.css';
 
 export default function Footer() {
+  const { lang } = useLang();
+  const t = config[lang];
   const year = new Date().getFullYear();
 
   return (
@@ -12,11 +15,9 @@ export default function Footer() {
           {config.name}
         </div>
         <p className={styles.copy}>
-          © {year} {config.name} · Alle Rechte vorbehalten.
+          © {year} {config.name} · {t.footer.rights}
         </p>
-        <p className={styles.built}>
-          Built with React + Vite
-        </p>
+        <p className={styles.built}>{t.footer.built}</p>
       </div>
     </footer>
   );

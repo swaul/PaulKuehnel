@@ -1,9 +1,10 @@
 import { config } from '../config.js';
+import { useLang } from '../LangContext.jsx';
 import { useScrollAnimation } from '../hooks.js';
 import styles from './Projects.module.css';
 import { ExternalLink, Github, ImageOff } from 'lucide-react';
 
-function ProjectCard({ project, index }) {
+function ProjectCard({ project, strings, index }) {
   const [ref, visible] = useScrollAnimation(0.1);
 
   return (
@@ -18,7 +19,7 @@ function ProjectCard({ project, index }) {
         ) : (
           <div className={styles.imgPlaceholder}>
             <ImageOff size={32} strokeWidth={1} />
-            <span>Bild in /public/projects/<br/>ablegen & config anpassen</span>
+            <span>{strings.placeholder}</span>
           </div>
         )}
         <div className={styles.overlay}>
@@ -26,13 +27,13 @@ function ProjectCard({ project, index }) {
             {project.liveUrl && (
               <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className={styles.overlayBtn}>
                 <ExternalLink size={16} />
-                Live Demo
+                {strings.liveDemo}
               </a>
             )}
             {project.link && (
               <a href={project.link} target="_blank" rel="noopener noreferrer" className={`${styles.overlayBtn} ${styles.overlayBtnGhost}`}>
                 <Github size={16} />
-                Code
+                {strings.code}
               </a>
             )}
           </div>
@@ -50,12 +51,12 @@ function ProjectCard({ project, index }) {
         <div className={styles.footer}>
           {project.link && (
             <a href={project.link} target="_blank" rel="noopener noreferrer" className={styles.link}>
-              <Github size={14} /> Repository
+              <Github size={14} /> {strings.repository}
             </a>
           )}
           {project.liveUrl && (
             <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className={styles.link}>
-              <ExternalLink size={14} /> Live ansehen
+              <ExternalLink size={14} /> {strings.liveLink}
             </a>
           )}
         </div>
@@ -65,23 +66,23 @@ function ProjectCard({ project, index }) {
 }
 
 export default function Projects() {
+  const { lang } = useLang();
+  const t = config[lang];
   const [ref, visible] = useScrollAnimation();
 
   return (
     <section className={styles.section} id="projects">
       <div className={styles.sectionHeader} ref={ref}>
         <div className={`${styles.headerInner} ${visible ? styles.visible : ''}`}>
-          <span className={styles.label}>✦ Portfolio</span>
-          <h2 className={styles.heading}>Ausgewählte Projekte</h2>
-          <p className={styles.sub}>
-            Eine Auswahl meiner Arbeiten — von Konzept bis zur fertigen Umsetzung.
-          </p>
+          <span className={styles.label}>✦ {t.projectLabels.sectionLabel}</span>
+          <h2 className={styles.heading}>{t.projectLabels.heading}</h2>
+          <p className={styles.sub}>{t.projectLabels.sub}</p>
         </div>
       </div>
 
       <div className={styles.grid}>
-        {config.projects.map((project, i) => (
-          <ProjectCard key={i} project={project} index={i} />
+        {t.projects.map((project, i) => (
+          <ProjectCard key={i} project={project} strings={t.projectLabels} index={i} />
         ))}
       </div>
     </section>
