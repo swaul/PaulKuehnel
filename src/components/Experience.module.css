@@ -99,6 +99,7 @@
 
 .card {
   padding: 16px 0 40px 28px;
+  min-width: 0;
 }
 
 .cardHeader {
@@ -146,6 +147,31 @@
 
 @media (max-width: 700px) {
   .section { padding: 80px 24px; }
-  .item { grid-template-columns: 0 40px 1fr; }
+
+  .item {
+    display: flex;
+    flex-direction: row;
+    grid-template-columns: unset;
+  }
+
   .left { display: none; }
+
+  .connector {
+    flex-shrink: 0;
+    width: 40px;
+  }
+
+  .card {
+    flex: 1;
+    min-width: 0;
+    padding: 0 0 32px 16px;
+  }
+
+  .desc,
+  .role,
+  .company {
+    word-break: normal;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
 }

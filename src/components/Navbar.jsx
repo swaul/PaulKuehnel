@@ -1,20 +1,23 @@
 import { useState, useEffect } from 'react';
 import { config } from '../config.js';
 import { useLang } from '../LangContext.jsx';
+import { useTheme } from '../ThemeContext.jsx';
 import styles from './Navbar.module.css';
+import { Sun, Moon } from 'lucide-react';
 
 export default function Navbar() {
-  const { lang, toggle } = useLang();
+  const { lang, toggle: toggleLang } = useLang();
+  const { theme, toggle: toggleTheme } = useTheme();
   const t = config[lang];
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navLinks = [
-    { label: t.nav.about, href: '#about' },
-    { label: t.nav.skills, href: '#skills' },
+    { label: t.nav.about,      href: '#about' },
+    { label: t.nav.skills,     href: '#skills' },
     { label: t.nav.experience, href: '#experience' },
-    { label: t.nav.projects, href: '#projects' },
-    { label: t.nav.contact, href: '#contact' },
+    { label: t.nav.projects,   href: '#projects' },
+    { label: t.nav.contact,    href: '#contact' },
   ];
 
   useEffect(() => {
@@ -39,10 +42,20 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <div className={styles.actions}>
+        <div className={styles.controls}>
+          {/* Theme toggle */}
+          <button
+            className={styles.iconBtn}
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+          >
+            {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+          </button>
+
+          {/* Lang toggle */}
           <button
             className={styles.langToggle}
-            onClick={toggle}
+            onClick={toggleLang}
             aria-label="Switch language"
           >
             <span className={lang === 'de' ? styles.langActive : styles.langInactive}>DE</span>
@@ -60,9 +73,9 @@ export default function Navbar() {
           onClick={() => setMenuOpen(o => !o)}
           aria-label="Menu"
         >
-          <span className={menuOpen ? styles.active : ''}></span>
-          <span className={menuOpen ? styles.active : ''}></span>
-          <span className={menuOpen ? styles.active : ''}></span>
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
       </div>
     </nav>

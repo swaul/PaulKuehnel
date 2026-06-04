@@ -46,6 +46,21 @@
   left: -5%;
 }
 
+[data-theme="light"] .orb1 {
+  background: radial-gradient(circle, rgba(124,92,46,0.12) 0%, transparent 70%);
+}
+
+[data-theme="light"] .orb2 {
+  background: radial-gradient(circle, rgba(180,140,80,0.1) 0%, transparent 70%);
+}
+
+[data-theme="light"] .grid {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
 .content {
   position: relative;
   z-index: 1;
