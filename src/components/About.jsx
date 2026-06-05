@@ -35,10 +35,6 @@ export default function About() {
               <span className={styles.statNum}>{t.projects.length}</span>
               <span className={styles.statLabel}>{t.about.projectsLabel}</span>
             </div>
-            <div className={styles.stat}>
-              <span className={styles.statNum}>{t.education.length}</span>
-              <span className={styles.statLabel}>{t.about.degreesLabel}</span>
-            </div>
           </div>
         </div>
 
