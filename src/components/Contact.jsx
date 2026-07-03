@@ -33,7 +33,7 @@ export default function Contact() {
             </a>
 
             {socialLinks.length > 0 && (
-              <div className={styles.socials}>
+              <div className={styles.socials} style={{ paddingTop: '10px' }}>
                 {socialLinks.map(([key, url]) => {
                   const Icon = socialIcons[key];
                   if (!Icon) return null;
